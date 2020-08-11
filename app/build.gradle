@@ -26,14 +26,16 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.firebase:firebase-analytics:17.4.4'
-    implementation 'com.google.firebase:firebase-auth:19.3.2'
-    implementation 'com.google.firebase:firebase-storage:19.1.1'
-    implementation 'com.google.firebase:firebase-database:19.3.1'
-    implementation 'com.firebaseui:firebase-ui-database:6.3.0'
-    implementation 'com.hbb20:ccp:2.4.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'com.google.firebase:firebase-analytics:17.4.4' //Firebase analytics
+    implementation 'com.google.firebase:firebase-auth:19.3.2' //Firebase auth
+    implementation 'com.google.firebase:firebase-storage:19.1.1' //Firebase storage
+    implementation 'com.google.firebase:firebase-database:19.3.1' //Firebase database
+    implementation 'com.firebaseui:firebase-ui-database:6.3.0'  //Firebase ui database
+    implementation 'com.hbb20:ccp:2.4.0' //Country code picker for login
+    implementation 'com.squareup.picasso:picasso:2.71828' //Picasso for downloading image
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+' //For cropping image
+    implementation 'id.zelory:compressor:2.1.0' //For compressing image
+    implementation 'pub.devrel:easypermissions:2.0.1' //Easy permissions
     implementation 'com.google.android.material:material:1.2.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation 'junit:junit:4.12'
