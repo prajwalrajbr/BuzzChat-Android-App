@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/bgColor">
+
+    <ImageView
+        android:id="@+id/buzzLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/buzz_logo1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/buzzLogo">
+
+        <TextView
+            android:id="@+id/enterPhNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="28dp"
+            android:textColor="@color/orange"
+            android:text="Enter Your Phone Number"/>
+
+        <TextView
+            android:id="@+id/enterPhNoDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="BuzzChat will send an SMS to verify your phone number."/>
+
+
+        <LinearLayout
+            android:id="@+id/enterPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="2dp"
+            android:visibility="visible">
+
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodeHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:ccp_defaultNameCode="IN"
+                app:ccpDialog_backgroundColor="@color/bgColor"
+                app:ccpDialog_fastScroller_bubbleColor="@color/white"
+                app:ccpDialog_textColor="@color/orange"
+                android:backgroundTint="@color/bgColor"
+                app:ccp_contentColor="@color/orange"/>
+
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="@color/white"/>
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:hint="Phone Number"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/bgColor"
+                android:background="@color/white"
+                android:singleLine="true"
+                android:paddingLeft="5dp"
+                android:inputType="phone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/enterCodeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:paddingBottom="2dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/codeText"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:hint="------"
+                android:gravity="center"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/white"
+                android:paddingStart="1dp"
+                android:backgroundTint="@color/bgColor"
+                android:background="@color/white"
+                android:singleLine="true"
+                android:paddingLeft="5dp"
+                android:letterSpacing="1"
+                android:inputType="phone"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/enter6DigitCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:textSize="20dp"
+            android:background="@color/bgColor"
+            android:textColor="@color/white"
+            android:text="Enter 6-digit code"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:background="@color/orange"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/nextSubmitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/bgColor"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:text="Next"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
