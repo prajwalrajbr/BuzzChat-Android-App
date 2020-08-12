@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -49,7 +46,7 @@ import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
 
-public class ProfileActivity extends AppCompatActivity {
+public class MyProfileActivity extends AppCompatActivity {
 
     private EditText userName, userBio;
     private ImageButton imgSelectBtn;
@@ -68,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_my_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -170,7 +167,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if(snapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("image")){
                         saveInfoOnlyWithoutImage();
                     }else{
-                        Toast.makeText(ProfileActivity.this,"Select Profile Image",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileActivity.this,"Select Profile Image",Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -180,9 +177,9 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
         }else if(getUserName.equals("")){
-            Toast.makeText(ProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
         }else if(getUserBio.equals("")){
-            Toast.makeText(ProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Updating Profile");
             progressDialog.setMessage("Please wait.....");
@@ -221,7 +218,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     finish();
                                     progressDialog.dismiss();
 
-                                    Toast.makeText(ProfileActivity.this,"Profile updated",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyProfileActivity.this,"Profile updated",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -236,9 +233,9 @@ public class ProfileActivity extends AppCompatActivity {
         final String getUserBio = userBio.getText().toString();
 
         if(getUserName.equals("")){
-            Toast.makeText(ProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
         }else if(getUserBio.equals("")){
-            Toast.makeText(ProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
         }else{
 
             progressDialog.setTitle("Updating Profile");
@@ -258,7 +255,7 @@ public class ProfileActivity extends AppCompatActivity {
                         finish();
                         progressDialog.dismiss();
 
-                        Toast.makeText(ProfileActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

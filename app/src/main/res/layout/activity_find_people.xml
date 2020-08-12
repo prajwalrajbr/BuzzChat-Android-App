@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".findPeople"
+    android:background="@color/bgColor"
+    tools:ignore="DuplicateIds">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange">
+
+        <RelativeLayout
+            android:id="@+id/searchOff"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/backBtnNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/orange"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Friend"
+                android:textSize="20dp"
+                android:textColor="@color/bgColor"
+                android:layout_marginHorizontal="35dp"/>
+
+            <ImageButton
+                android:id="@+id/searchOnBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/orange"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_baseline_search_24"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/searchOn"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/backBtnForSearchET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/orange"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_centerVertical="true"/>
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search"
+                android:inputType="text"
+                android:textSize="20dp"
+                android:layout_marginRight="50dp"
+                android:textColor="@color/bgColor"
+                android:backgroundTint="@color/bgColor"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/backBtnForSearchET"
+                />
+
+            <ImageButton
+                android:id="@+id/clearBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/orange"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_clear_black_24dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/findPeopleList"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

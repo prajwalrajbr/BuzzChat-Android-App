@@ -3,6 +3,7 @@ package com.example.buzzchat;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class TabbedActivity extends AppCompatActivity {
 
@@ -36,6 +38,24 @@ public class TabbedActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        FloatingActionButton fabAddFriendBtn = (FloatingActionButton) findViewById(R.id.fabAddFriendBtn);
+        fabAddFriendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(TabbedActivity.this,findPeople.class);
+                startActivity(i);
+            }
+        });
+
+        FloatingActionButton fabFriendsListBtn = (FloatingActionButton) findViewById(R.id.fabFriendsListBtn);
+        fabFriendsListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(TabbedActivity.this,findPeople.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -62,7 +82,7 @@ public class TabbedActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.Profile:
-                Intent profile = new Intent(this, ProfileActivity.class);
+                Intent profile = new Intent(this, MyProfileActivity.class);
                 startActivity(profile);
                 return true;
 

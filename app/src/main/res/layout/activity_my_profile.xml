@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity"
+    tools:context=".MyProfileActivity"
     android:background="@color/bgColor"
     tools:ignore="DuplicateIds">
 
@@ -14,8 +14,6 @@
         android:id="@+id/toolbar"
         layout="@layout/home_toolbar"
         android:visibility="visible"
-
-        android:layout_above="@+id/tabs"
         android:theme="@style/AppTheme.NoActionBar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
