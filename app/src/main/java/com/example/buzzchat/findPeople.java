@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -38,12 +40,14 @@ public class findPeople extends AppCompatActivity {
     private RelativeLayout searchOn, searchOff;
     private String str = "";
     private DatabaseReference userRef;
+    private String currentUser;
+    int posToBeRemoved = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_people);
-
+        currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         backBtnforSearchET = (ImageButton) findViewById(R.id.backBtnForSearchET);
@@ -127,32 +131,43 @@ public class findPeople extends AppCompatActivity {
 
         if(str.equals("")){
             options = new FirebaseRecyclerOptions.Builder<Friends>()
-                    .setQuery(userRef, Friends.class)
+                    .setQuery(userRef.orderByChild("name"), Friends.class)
                     .build();
         }else{
             options = new FirebaseRecyclerOptions.Builder<Friends>()
-                    .setQuery(userRef.orderByChild("name").startAt(str).endAt(str + "\uf8ff"), Friends.class)
+                    .setQuery(userRef.orderByChild("name").startAt(str.toLowerCase()).endAt(str.toLowerCase() + "\uf8ff").limitToFirst(10), Friends.class)
                     .build();
+
         }
 
-        FirebaseRecyclerAdapter<Friends, findFriendsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends, findFriendsViewHolder>(options) {
+        final FirebaseRecyclerAdapter<Friends, findFriendsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends, findFriendsViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull findFriendsViewHolder holder, final int position, @NonNull final Friends model) {
-                holder.userNameText.setText(model.getName());
-                Picasso.get().load(model.getImage()).into(holder.profileImageView);
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String visit_user_id = getRef(position).getKey();
-
-                        Intent i = new Intent(findPeople.this, userProfileActivity.class);
-                        i.putExtra("visit_user_id",visit_user_id);
-                        i.putExtra("profile_image",model.getImage());
-                        i.putExtra("profile_name",model.getName());
-                        startActivity(i);
+                if( !model.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                    holder.userNameText.setText(model.getName());
+                    if(model.getBio().length()>80){
+                        holder.bioText.setText(model.getBio().substring(0,80)+"...");
+                    }else{
+                        holder.bioText.setText(model.getBio());
                     }
-                });
+                    Picasso.get().load(model.getImage()).into(holder.profileImageView);
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String visit_user_id = getRef(position).getKey();
+
+                            Intent i = new Intent(findPeople.this, userProfileActivity.class);
+                            i.putExtra("visit_user_id",visit_user_id);
+                            i.putExtra("profile_image",model.getImage());
+                            i.putExtra("profile_name",model.getName());
+                            startActivity(i);
+                        }
+                    });
+                }else {
+                    holder.cardViewNotification.setVisibility(View.GONE);
+                }
             }
 
             @NonNull
@@ -167,9 +182,11 @@ public class findPeople extends AppCompatActivity {
         firebaseRecyclerAdapter.startListening();
     }
 
+
+
     public static class findFriendsViewHolder extends RecyclerView.ViewHolder{
 
-        TextView userNameText;
+        TextView userNameText, bioText;
         Button acceptBtn, rejectBtn;
         ImageView profileImageView;
         RelativeLayout cardViewNotification;
@@ -178,8 +195,9 @@ public class findPeople extends AppCompatActivity {
             super(itemView);
 
             userNameText = (TextView) itemView.findViewById(R.id.findFriendUsername);
+            bioText = (TextView) itemView.findViewById(R.id.findFriendBio);
             acceptBtn = (Button) itemView.findViewById(R.id.acceptBtn);
-            rejectBtn = (Button) itemView.findViewById(R.id.rectangle);
+            rejectBtn = (Button) itemView.findViewById(R.id.rejectBtn);
             profileImageView = (ImageView) itemView.findViewById(R.id.findFriendImage);
             cardViewNotification = (RelativeLayout) itemView.findViewById(R.id.cardViewNotification);
         }

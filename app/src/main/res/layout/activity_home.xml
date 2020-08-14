@@ -1,10 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/homeActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabExpander"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/bgColor"
+            app:rippleColor="@color/bgColor"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginRight="24dp"
+            android:tint="@color/white"
+            app:fabSize="auto"
+            android:backgroundTint="@color/bgColor"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@color/bgColor"
+            app:rippleColor="@color/bgColor"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:tint="@color/orange"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_baseline_people_24"
+            app:fabSize="auto"
+            android:backgroundTint="@color/bgColor"
+            android:layout_above="@id/fabExpander"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@color/bgColor"
+            app:rippleColor="@color/bgColor"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:tint="@color/orange"
+            app:srcCompat="@drawable/ic_baseline_notifications_24"
+            app:fabSize="auto"
+            android:backgroundTint="@color/bgColor"
+            android:layout_above="@id/fabFriends"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@color/bgColor"
+            app:rippleColor="@color/bgColor"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:visibility="gone"
+            android:tint="@color/orange"
+            app:srcCompat="@drawable/ic_baseline_person_add_24"
+            app:fabSize="auto"
+            android:backgroundTint="@color/bgColor"
+            android:layout_above="@id/fabNotifications"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -19,4 +96,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

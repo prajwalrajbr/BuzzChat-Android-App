@@ -8,12 +8,10 @@
     tools:context=".TabbedActivity">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".TabbedActivity">
+
 
         <include
             android:id="@+id/toolbar"
@@ -53,40 +51,11 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="NotSibling,UnknownId">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginStart="@dimen/fab_margin"
-                android:layout_marginTop="@dimen/fab_margin"
-                android:layout_marginEnd="@dimen/fab_margin"
-                android:layout_marginBottom="@dimen/fab_margin"
-                app:srcCompat="@android:drawable/ic_dialog_email" />
+
         </androidx.viewpager.widget.ViewPager>
 
     </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddFriendBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_baseline_person_add_24"
-        app:fabSize="normal"
-        app:elevation="6dp"
-        android:backgroundTint="@color/orange"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabFriendsListBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_baseline_people_24"
-        app:fabSize="normal"
-        app:elevation="6dp"
-        android:backgroundTint="@color/orange"/>
-    
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

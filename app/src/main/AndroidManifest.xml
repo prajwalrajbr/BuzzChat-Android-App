@@ -13,7 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".userProfileActivity"></activity>
+        <activity
+            android:name=".NotificationsActivity"
+            android:parentActivityName=".TabbedActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TabbedActivity" />
+        </activity>
+        <activity
+            android:name=".userProfileActivity"
+            android:parentActivityName=".findPeople">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".findPeople" />
+        </activity>
         <activity android:name=".FriendsListActivity" />
         <activity
             android:name=".findPeople"

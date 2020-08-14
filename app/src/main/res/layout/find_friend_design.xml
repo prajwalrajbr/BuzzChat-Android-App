@@ -36,6 +36,16 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:text="Username"
+                android:textAllCaps="true"
+                />
+
+            <TextView
+                android:id="@+id/findFriendBio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="14dp"
+                android:layout_marginTop="10dp"
+                android:text="Bio"
                 />
 
             <Button
@@ -46,6 +56,7 @@
                 android:textSize="10dp"
                 android:text="Accept Friend Request"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 />
 
             <Button
@@ -56,6 +67,7 @@
                 android:textSize="10dp"
                 android:text="Reject Friend Request"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 />
 
         </LinearLayout>

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -203,10 +204,9 @@ public class MyProfileActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         downloadUrl = task.getResult().toString();
-
                         HashMap<String, Object> profileMap = new HashMap<>();
                         profileMap.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        profileMap.put("name", getUserName);
+                        profileMap.put("name", getUserName.toLowerCase());
                         profileMap.put("bio", getUserBio);
                         profileMap.put("image", downloadUrl);
 
@@ -244,7 +244,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
             HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-            profileMap.put("name", getUserName);
+            profileMap.put("name", getUserName.toLowerCase());
             profileMap.put("bio", getUserBio);
 
             userRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -273,7 +273,7 @@ public class MyProfileActivity extends AppCompatActivity {
                             String nameDb = snapshot.child("name").getValue().toString();
                             String bioDb = snapshot.child("bio").getValue().toString();
 
-                            userName.setText(nameDb);
+                            userName.setText(nameDb.toUpperCase());
                             userBio.setText(bioDb);
                             Picasso.get().load(imageDb).placeholder(R.drawable.default_profile_pic).into(profileImg);
 

@@ -10,6 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/home_toolbar"
+            android:visibility="visible"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            tools:ignore="NotSibling" />
+
         <ImageView
             android:id="@+id/userProfileImg"
             android:layout_width="match_parent"
@@ -24,9 +33,10 @@
             android:layout_height="wrap_content"
             android:text="Add Friend"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginBottom="130dp"
             android:layout_alignParentBottom="true"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/cancelRequest"
@@ -34,9 +44,9 @@
             android:layout_height="wrap_content"
             android:text="Cancel Request"
             android:layout_marginHorizontal="50dp"
-            android:layout_below="@id/userUsername"
+            android:layout_marginBottom="50dp"
             android:textAllCaps="false"
-            android:layout_marginTop="60dp"
+            android:layout_alignParentBottom="true"
             android:visibility="visible"/>
 
         <TextView
@@ -45,8 +55,8 @@
             android:layout_height="wrap_content"
             android:text="Username"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_above="@id/addUserFriend"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/toolbar"
             android:textSize="30dp"
             android:layout_centerHorizontal="true"/>
 

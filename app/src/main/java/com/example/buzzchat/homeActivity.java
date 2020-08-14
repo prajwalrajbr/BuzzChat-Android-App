@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +22,7 @@ public class homeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -29,7 +32,6 @@ public class homeActivity extends AppCompatActivity {
 
             getSupportActionBar().hide();
         }catch (Exception e){
-            Log.v("ssyss",e.toString());
         }getActionBar().setTitle("Hello world App");
         getSupportActionBar().setTitle("Hello world App");
     }
