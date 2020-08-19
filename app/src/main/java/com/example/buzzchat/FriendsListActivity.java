@@ -2,6 +2,7 @@ package com.example.buzzchat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class FriendsListActivity extends AppCompatActivity {
 
     private RecyclerView FriendsList;
@@ -36,12 +39,15 @@ public class FriendsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
-
         mAuth = FirebaseAuth.getInstance();
         currentUid = mAuth.getCurrentUser().getUid();
         friendsRef = FirebaseDatabase.getInstance().getReference().child("Friends");
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
 
         FriendsList = (RecyclerView) findViewById(R.id.friendsList);
         FriendsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -68,6 +74,7 @@ public class FriendsListActivity extends AppCompatActivity {
 
                             holder.userNameText.setText(userName.toUpperCase());
                             Picasso.get().load(profileImage).into(holder.FriendImage);
+
                         }
                     }
 
@@ -110,4 +117,9 @@ public class FriendsListActivity extends AppCompatActivity {
             cardViewNotification = (RelativeLayout) itemView.findViewById(R.id.cardViewFriendsList);
         }
     }
+    @Override
+    public void onBackPressed() {
+            finish();
+    }
+
 }

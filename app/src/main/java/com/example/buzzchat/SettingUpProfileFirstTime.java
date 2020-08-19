@@ -48,7 +48,7 @@ import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
 
-public class MyProfileActivity extends AppCompatActivity {
+public class SettingUpProfileFirstTime extends AppCompatActivity {
 
     private EditText userName, userBio;
     private ImageButton imgSelectBtn;
@@ -169,7 +169,7 @@ public class MyProfileActivity extends AppCompatActivity {
                     if(snapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).hasChild("image")){
                         saveInfoOnlyWithoutImage();
                     }else{
-                        Toast.makeText(MyProfileActivity.this,"Select Profile Image",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingUpProfileFirstTime.this,"Select Profile Image",Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -179,9 +179,9 @@ public class MyProfileActivity extends AppCompatActivity {
                 }
             });
         }else if(getUserName.equals("")){
-            Toast.makeText(MyProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingUpProfileFirstTime.this,"Enter your name",Toast.LENGTH_SHORT).show();
         }else if(getUserBio.equals("")){
-            Toast.makeText(MyProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingUpProfileFirstTime.this,"Enter your bio",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Updating Profile");
             progressDialog.setMessage("Please wait.....");
@@ -216,10 +216,12 @@ public class MyProfileActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
+                                    Intent i = new Intent(SettingUpProfileFirstTime.this, TabbedActivity.class);
+                                    startActivity(i);
                                     finish();
                                     progressDialog.dismiss();
 
-                                    Toast.makeText(MyProfileActivity.this,"Profile updated",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SettingUpProfileFirstTime.this,"Profile updated",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -234,9 +236,9 @@ public class MyProfileActivity extends AppCompatActivity {
         final String getUserBio = userBio.getText().toString();
 
         if(getUserName.equals("")){
-            Toast.makeText(MyProfileActivity.this,"Enter your name",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingUpProfileFirstTime.this,"Enter your name",Toast.LENGTH_SHORT).show();
         }else if(getUserBio.equals("")){
-            Toast.makeText(MyProfileActivity.this,"Enter your bio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingUpProfileFirstTime.this,"Enter your bio",Toast.LENGTH_SHORT).show();
         }else{
 
             progressDialog.setTitle("Updating Profile");
@@ -253,10 +255,12 @@ public class MyProfileActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
+                        Intent i = new Intent(SettingUpProfileFirstTime.this, TabbedActivity.class);
+                        startActivity(i);
                         finish();
                         progressDialog.dismiss();
 
-                        Toast.makeText(MyProfileActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingUpProfileFirstTime.this, "Profile updated", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -289,26 +293,17 @@ public class MyProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.logOut:
-                FirebaseAuth.getInstance().signOut();
-                Intent logOutIntent = new Intent(this, LoginActivity.class);
-                startActivity(logOutIntent);
-                finishAffinity();
-                return true;
             case android.R.id.home:
                 if(isImageFitToScreen){
                     showImageFullScreen(isImageFitToScreen);
                     return true;
                 }else{
-                    return super.onOptionsItemSelected(item);
+                    FirebaseAuth.getInstance().signOut();
+                    Intent logOutIntent = new Intent(this, LoginActivity.class);
+                    startActivity(logOutIntent);
+                    finish();
                 }
 
         }
@@ -354,6 +349,9 @@ public class MyProfileActivity extends AppCompatActivity {
         if(isImageFitToScreen){
             showImageFullScreen(isImageFitToScreen);
         }else{
+            FirebaseAuth.getInstance().signOut();
+            Intent logOutIntent = new Intent(this, LoginActivity.class);
+            startActivity(logOutIntent);
             finish();
         }
     }

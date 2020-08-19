@@ -63,8 +63,6 @@ public class userProfileActivity extends AppCompatActivity {
         addUserFriend.setVisibility(View.GONE);
 
         manageClickEvents();
-        addUserFriend.setVisibility(View.VISIBLE);
-
     }
 
     private void manageClickEvents() {

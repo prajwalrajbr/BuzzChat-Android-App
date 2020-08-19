@@ -23,7 +23,9 @@
             android:id="@+id/userProfileImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/default_profile_pic" />
+            android:src="@drawable/default_profile_pic"
+            android:background="@color/bgColor"
+            android:layout_below="@id/toolbar"/>
 
 
 
@@ -33,10 +35,12 @@
             android:layout_height="wrap_content"
             android:text="Add Friend"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="130dp"
+            android:layout_marginBottom="100dp"
             android:layout_alignParentBottom="true"
             android:textAllCaps="false"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:textStyle="bold"
+            android:background="@color/green"/>
 
         <Button
             android:id="@+id/cancelRequest"
@@ -44,10 +48,12 @@
             android:layout_height="wrap_content"
             android:text="Cancel Request"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:textStyle="bold"
+            android:background="@color/red"/>
 
         <TextView
             android:id="@+id/userUsername"
@@ -55,9 +61,11 @@
             android:layout_height="wrap_content"
             android:text="Username"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
             android:layout_below="@id/toolbar"
             android:textSize="30dp"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"/>
 
 
