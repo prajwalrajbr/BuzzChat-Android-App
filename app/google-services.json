@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "345993770865-t8aq0ii006jllg6me7m7b0sbb0s2btr6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.buzzchat",
+            "certificate_hash": "1af910b438da6b25ccdbb83cc46d091f48d37e16"
+          }
+        },
+        {
           "client_id": "345993770865-8vfitkfn22bo6l12lbsjcgpgor7pdche.apps.googleusercontent.com",
           "client_type": 3
         }

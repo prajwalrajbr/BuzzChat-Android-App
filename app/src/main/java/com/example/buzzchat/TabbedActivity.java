@@ -6,6 +6,11 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +31,8 @@ public class TabbedActivity extends AppCompatActivity {
     private static final String TAG = "TabbedActivity";
     private SectionsPageAdapter sectionPageAdapter;
     private ViewPager viewPager;
+    private FirebaseAuth mAuth;
+    private String currentUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,10 @@ public class TabbedActivity extends AppCompatActivity {
         sectionPageAdapter = new SectionsPageAdapter((getSupportFragmentManager()));
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setupViewPager(viewPager);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUid = mAuth.getCurrentUser().getUid();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -56,6 +67,32 @@ public class TabbedActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        ValidateUser();
+    }
+
+    private  void ValidateUser() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.child("Users").child(currentUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()){
+                    Intent ProfileIntent = new Intent(TabbedActivity.this, userProfileActivity.class);
+                    startActivity(ProfileIntent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

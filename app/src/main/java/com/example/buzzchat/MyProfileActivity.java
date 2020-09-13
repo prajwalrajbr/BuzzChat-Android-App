@@ -75,7 +75,9 @@ public class MyProfileActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
 
         userProfileImgRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
         userName = (EditText) findViewById(R.id.userName);
         userBio = (EditText) findViewById(R.id.userBio);
         imgSelectBtn = (ImageButton) findViewById(R.id.selectImgBtn);
@@ -230,6 +232,7 @@ public class MyProfileActivity extends AppCompatActivity {
     }
 
     private void saveInfoOnlyWithoutImage() {
+
         final String getUserName = userName.getText().toString();
         final String getUserBio = userBio.getText().toString();
 
@@ -269,6 +272,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Log.v("heolm", userRef.toString());
                         if(snapshot.exists()){
                             String imageDb = snapshot.child("image").getValue().toString();
                             String nameDb = snapshot.child("name").getValue().toString();

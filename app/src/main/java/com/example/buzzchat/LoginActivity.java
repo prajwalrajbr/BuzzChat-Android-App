@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                             loadingBar.dismiss();
                             Toast.makeText(LoginActivity.this,"Phone number verified",Toast.LENGTH_SHORT).show();
                             Toast.makeText(LoginActivity.this,"Successfully Logged In",Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(LoginActivity.this, SettingUpProfileFirstTime.class);
+                            Intent i = new Intent(LoginActivity.this, TabbedActivity.class);
                             startActivity(i);
                             finish();
                         } else {
